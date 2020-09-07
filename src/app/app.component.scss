@@ -1,0 +1,28 @@
+.mat-header-cell {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mat-mini-fab {
+  margin: 0 .1em;
+}
+
+/* Column Widths Mixin */
+@mixin mat-table-columns($columns) {
+  .mat-column- {
+    @each $colName, $props in $columns {
+
+      $width: map-get($props, 'width');
+
+      &#{$colName} {
+        word-wrap: break-word;
+        flex: $width;
+        max-width: $width;
+
+        @if map-has-key($props, 'color') {
+          color: map-get($props, 'color');
+        }
+      }
+    }
+  }
+}

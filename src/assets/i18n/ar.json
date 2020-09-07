@@ -1,9 +1,35 @@
 {
-  "languageDirection": "rtl",
+  "language": "ar",
+  "language_direction": "rtl",
   "navigation": {
     "sidebar": {
-      "client_management": "إدارة العملاء"
+      "admin_tools": "إدارة النظام"
     },
     "toolbar": {}
+  },
+  "common_pages": {
+    "login": {
+      "header": "تسجيل الدخول",
+      "username": "إسم المستخدم",
+      "password": "كلمة المرور",
+      "button": "تسجيل الدخول"
+    }
+  },
+  "admin_tools": {
+    "navigation": {
+      "title": "لوحة أدوات مسؤول النظام",
+      "clients": "إدارة العملاء",
+      "users": "إدارة المستخدمين",
+      "roles": "إدارة الصلاحيات",
+      "activities": "إدارة الأنشطة",
+      "structures": "إدارة الهيكلة الإدارية",
+      "bundles": "إدارة الباقات"
+    },
+    "clients_management": {},
+    "users_management": {},
+    "roles_management": {},
+    "activities_management": {},
+    "structures_management": {},
+    "bundles_management": {}
   }
 }

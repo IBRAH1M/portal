@@ -2,15 +2,13 @@ import {Component} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
-import {environment} from '../../../environments/environment';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss']
+  selector: 'app-nav-sidebar',
+  templateUrl: './nav-sidebar.component.html',
+  styleUrls: ['./nav-sidebar.component.scss']
 })
-export class NavigationComponent {
-  applicationName = environment.appName;
+export class NavSidebarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {
   }

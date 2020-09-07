@@ -1,3 +1,8 @@
-<div dir={{languageDirection}}>
-  <app-navigation></app-navigation>
+<div dir="{{'language_direction' | translate}}">
+    <div *ngIf="(isAuthenticated | async)">
+      <app-nav-sidebar></app-nav-sidebar>
+    </div>
+    <div *ngIf="!(isAuthenticated | async)">
+      <app-login></app-login>
+    </div>
 </div>

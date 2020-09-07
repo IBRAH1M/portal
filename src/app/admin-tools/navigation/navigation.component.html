@@ -1,0 +1,63 @@
+<div class="mat-display-2">{{'admin_tools.navigation.title' | translate}}</div>
+
+<div fxLayout="row wrap"
+     fxLayoutAlign="flex-start"
+     fxLayoutGap="1rem grid"
+     fxLayout.lt-sm="column"
+     fxLayoutGap.lt-sm="0.5rem">
+
+  <a href="#"
+     [routerLink]="['clients']"
+     *appHasAccess="['READ_CLIENT']">
+    <mat-card matRipple>
+      <mat-icon aria-hidden="true">grain</mat-icon>
+      <mat-card-content>{{'admin_tools.navigation.clients' | translate}}</mat-card-content>
+    </mat-card>
+  </a>
+
+  <a href="#"
+     [routerLink]="['roles']"
+     *appHasAccess="['READ_ROLE']">
+    <mat-card matRipple>
+      <mat-icon aria-hidden="true">domain</mat-icon>
+      <mat-card-content>{{'admin_tools.navigation.roles' | translate}}</mat-card-content>
+    </mat-card>
+  </a>
+
+  <a href="#"
+     [routerLink]="['bundles']"
+     *appHasAccess="['READ_BUNDLE']">
+    <mat-card matRipple>
+      <mat-icon aria-hidden="true">confirmation_number</mat-icon>
+      <mat-card-content>{{'admin_tools.navigation.bundles' | translate}}</mat-card-content>
+    </mat-card>
+  </a>
+
+  <a href="#"
+     [routerLink]="['activities']"
+     *appHasAccess="['READ_ACTIVITY']">
+    <mat-card matRipple>
+      <mat-icon aria-hidden="true">more_horiz</mat-icon>
+      <mat-card-content>{{'admin_tools.navigation.activities' | translate}}</mat-card-content>
+    </mat-card>
+  </a>
+
+  <a href="#"
+     [routerLink]="['users']"
+     *appHasAccess="['READ_USER']">
+    <mat-card matRipple>
+      <mat-icon aria-hidden="true">people_alt</mat-icon>
+      <mat-card-content>{{'admin_tools.navigation.users' | translate}}</mat-card-content>
+    </mat-card>
+  </a>
+
+  <a href="#"
+     [routerLink]="['structure-levels']"
+     *appHasAccess="['READ_STRUCTURE_LEVEL']">
+    <mat-card matRipple>
+      <mat-icon aria-hidden="true">account_tree</mat-icon>
+      <mat-card-content>{{'admin_tools.navigation.structures' | translate}}</mat-card-content>
+    </mat-card>
+  </a>
+
+</div>

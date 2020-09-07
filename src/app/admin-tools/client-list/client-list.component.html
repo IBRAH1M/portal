@@ -1,0 +1,118 @@
+<div class="mat-display-2">{{'admin_tools.clients_management.title' | translate}}</div>
+<div class="mat-headline" #test>{{'admin_tools.clients_management.list.title' | translate}}</div>
+
+<div class="container mat-elevation-z8">
+
+  <div fxFlexFill
+       fxLayout="row nowrap"
+       fxLayout.xs="column-reverse"
+       fxLayoutGap="1rem"
+       fxLayoutAlign="center flex-start"
+       style="padding: 2rem 1rem; height: 5rem">
+
+    <mat-form-field fxFlex="3 1 auto">
+      <mat-label>{{'admin_tools.clients_management.list.filter' | translate}}</mat-label>
+      <input #input
+             matInput
+             placeholder="{{'admin_tools.clients_management.list.filter_placeholder' | translate}}">
+    </mat-form-field>
+
+    <a mat-raised-button
+       color="primary"
+       fxFlex="1 1 auto"
+       *appHasAccess="['CREATE_CLIENT']"
+       [routerLink]="['details']"
+       [state]="{new: true}">Create Client
+    </a>
+
+  </div>
+
+  <div [ngClass]="{'loading-shade': (dataLoading | async)}">
+    <mat-spinner *ngIf="(dataLoading | async)"></mat-spinner>
+  </div>
+
+  <div *ngIf="data?.empty"
+       class="mat-h1"
+       fxLayout="row"
+       fxLayoutAlign="center center">
+    NO DATA!
+  </div>
+
+  <div [ngClass]="{'hidden': data?.empty}">
+    <mat-table
+      [dataSource]="this"
+      matSort
+      matSortDisableClear
+      matSortActive="id"
+      matSortDirection="desc"
+      class="table-container"
+      aria-label="Elements">
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell
+          *matHeaderCellDef
+          disableClear
+          mat-sort-header>#
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let i = index;">{{i + 1}}</mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell
+          *matHeaderCellDef
+          disableClear
+          mat-sort-header>{{'admin_tools.clients_management.list.table.name' | translate}}
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let row">
+          <span>{{row.name}}</span>
+          <!--          <span *ngIf="localeId == 'ar'">{{row.nameAr}}</span>-->
+        </mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions"
+                    stickyEnd>
+        <mat-header-cell *matHeaderCellDef>{{'admin_tools.clients_management.list.table.actions' | translate}}
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let row;">
+          <a mat-icon-button
+             [routerLink]="['details']"
+             [state]="{data: row.id, view: true}"
+             *appHasAccess="['READ_CLIENT_DETAILS']"
+             color="primary">
+            <mat-icon>remove_red_eye</mat-icon>
+          </a>
+          <a mat-icon-button
+             [routerLink]="['details']"
+             [state]="{data:row.id, edit:true}"
+             *appHasAccess="['UPDATE_CLIENT']"
+             color="primary">
+            <mat-icon>create</mat-icon>
+          </a>
+          <button mat-icon-button
+                  color="primary"
+                  (click)="$event.stopPropagation();openDeleteDialog()"
+                  *appHasAccess="['DELETE_CLIENT']">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+  </div>
+
+  <mat-paginator showFirstLastButtons
+                 [length]="this.data?.totalElements"
+                 [pageIndex]="this.data?.number"
+                 [pageSize]="this.data?.size"
+                 [pageSizeOptions]="[25, 50, 100]">
+  </mat-paginator>
+</div>

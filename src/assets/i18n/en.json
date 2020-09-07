@@ -1,8 +1,55 @@
 {
+  "language": "en",
   "language_direction": "ltr",
   "navigation": {
     "sidebar": {
-      "client_management": "Client Management"
+      "admin_tools": "Admin Tools"
+    },
+    "toolbar": {}
+  },
+  "common_pages": {
+    "login": {
+      "header": "Login",
+      "username": "Username",
+      "password": "Password",
+      "button": "Login"
     }
+  },
+  "admin_tools": {
+    "navigation": {
+      "title": "Admin Tools Panel",
+      "clients": "Clients Management",
+      "users": "Users Management",
+      "roles": "Roles Management",
+      "activities": "Activities Management",
+      "structures": "Structures Management",
+      "bundles": "Bundles Management"
+    },
+    "clients_management": {
+      "title": "Client Management",
+      "list": {
+        "title": "Client List",
+        "filter": "Filter",
+        "filter_placeholder": "search term",
+        "table": {
+          "name": "Name",
+          "actions": "Actions"
+        }
+      },
+      "edit": {
+        "title": "Client Edit"
+      },
+      "details": {
+        "title": "Client Details"
+      },
+      "delete": {
+        "delete_title": "Delete Client"
+      }
+    },
+    "users_management": {},
+    "roles_management": {},
+    "activities_management": {},
+    "structures_management": {},
+    "bundles_management": {}
   }
 }

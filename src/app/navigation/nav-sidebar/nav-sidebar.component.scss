@@ -1,0 +1,15 @@
+.mat-sidenav {
+  width: 250px;
+}
+
+.mat-sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-sidenav-container {
+  position: fixed;
+  top: 0;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+}

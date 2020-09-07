@@ -1,0 +1,185 @@
+<div class="mat-display-2">{{'admin_tools.clients_management.title' | translate}}</div>
+
+<div fxLayout="row wrap"
+     fxLayoutAlign="space-between center"
+     style="height: 5rem">
+
+  <span class="mat-h1"
+        *ngIf="viewMode">{{'admin_tools.clients_management.details.title' | translate}}</span>
+  <span class="mat-h1"
+        *ngIf="editMode">{{'admin_tools.clients_management.edit.title' | translate}}</span>
+  <span class="mat-h1"
+        *ngIf="newMode">{{'admin_tools.clients_management.create.title' | translate}}</span>
+
+  <div fxLayout="row nowrap"
+       fxLayoutGap=".5rem"
+       fxLayoutGap.lt-md=".1rem">
+    <span *ngIf="viewMode">
+      <button mat-raised-button
+              mat-ripple
+              color="primary"
+              *appHasAccess="['UPDATE_CLIENT']"
+              (click)="editClient()">Edit Client</button>
+    </span>
+    <span *ngIf="viewMode || editMode">
+      <button mat-raised-button
+              mat-ripple
+              color="primary"
+              *appHasAccess="['DELETE_CLIENT']"
+              (click)="deleteClient()">Delete Client</button>
+    </span>
+    <span *ngIf="newMode || editMode">
+      <button mat-raised-button
+              mat-ripple
+              color="primary">Save Client</button>
+    </span>
+    <span *ngIf="newMode || editMode">
+      <a mat-raised-button
+              mat-ripple
+              color="primary"
+              [routerLink]="['../']"
+              [state]="{data: client?.id, view: true}">Cancel</a>
+    </span>
+  </div>
+</div>
+
+<div style="padding: 1rem;"
+     class="mat-elevation-z2"
+     fxLayout="column nowrap"
+     fxLayoutAlign="flex-start flex-start">
+
+  <!--  Basic Info-->
+  <span class="mat-h3" fxFlexFill>
+    <mat-divider></mat-divider>
+    <span>Basic Information</span>
+  </span>
+
+  <div fxFlexFill
+       fxLayout="row wrap"
+       fxLayout.lt-md="column"
+       fxLayoutGap.lt-md="0.5rem">
+
+    <mat-form-field appearance="outline"
+                    fxFlex="auto">
+      <mat-label>name</mat-label>
+      <input matInput
+             required
+             [disabled]="viewMode"
+             [(ngModel)]="client.name"
+             [value]="client?.name"
+             placeholder="client english name">
+      <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+    </mat-form-field>
+    <span fxFlex="0.1 0 auto"></span>
+    <mat-form-field appearance="outline"
+                    fxFlex="auto">
+      <mat-label>name ar</mat-label>
+      <input matInput
+             required
+             [disabled]="viewMode"
+             [(ngModel)]="client.nameAr"
+             [value]="client?.nameAr"
+             placeholder="client arabic name">
+      <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <!--  Contact Info-->
+  <span class="mat-h3" fxFlexFill>
+    <mat-divider></mat-divider>
+    <span>Contact Information</span>
+  </span>
+
+  <mat-form-field appearance="outline"
+                  fxFlexFill>
+    <mat-label>address</mat-label>
+    <input matInput
+           [disabled]="viewMode"
+           [(ngModel)]="client.contactInfo.address"
+           [value]="client?.contactInfo.address"
+           placeholder="client arabic name">
+    <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  fxFlexFill>
+    <mat-label>phone number</mat-label>
+    <input matInput
+           [disabled]="viewMode"
+           [(ngModel)]="client.contactInfo.phone_number"
+           [value]="client?.contactInfo.phone_number"
+           placeholder="client arabic name">
+    <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline"
+                  fxFlexFill>
+    <mat-label>email</mat-label>
+    <input matInput
+           [disabled]="viewMode"
+           [(ngModel)]="client.contactInfo.email"
+           [value]="client?.contactInfo.email"
+           placeholder="client arabic name">
+    <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+  </mat-form-field>
+
+  <!--  System Info-->
+  <div *ngIf="viewMode">
+    <span class="mat-h3" fxFlexFill>
+      <mat-divider></mat-divider>
+      <span>System Information</span>
+    </span>
+
+    <mat-form-field appearance="outline"
+                    fxFlexFill>
+      <mat-label>created by</mat-label>
+      <input matInput
+             [disabled]="true"
+             [(ngModel)]="client.createdBy"
+             [value]="client?.createdBy"
+             placeholder="client arabic name">
+      <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline"
+                    fxFlexFill>
+      <mat-label>created date</mat-label>
+      <input matInput
+             [disabled]="true"
+             [(ngModel)]="client.createdDate"
+             [value]="client?.createdDate"
+             placeholder="client arabic name">
+      <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <!-- Client Settings-->
+  <span class="mat-h3" fxFlexFill>
+    <mat-divider></mat-divider>
+    <span>Client Settings</span>
+  </span>
+
+  properties: null
+  subscriptions: []
+
+  <!--  <mat-form-field fxFlexFill>-->
+  <mat-slide-toggle
+    color="primary"
+    [checked]="client?.enabled"
+    [disabled]="viewMode">Enable Client
+  </mat-slide-toggle>
+  <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+  <!--  </mat-form-field>-->
+
+  <mat-form-field fxFlexFill>
+    <mat-label>Choose client activity type</mat-label>
+    <mat-select required
+                [disabled]="viewMode"
+                [(ngModel)]="client.activity">
+      <mat-option *ngIf="viewMode && client?.activity" [value]="client?.activity">{{client?.activity.name}}</mat-option>
+      <mat-option *ngIf="editMode && client?.activity" [value]="client?.activity">{{client?.activity.name}}</mat-option>
+      <mat-option *ngFor="let activity of activities" [value]="activity.id">{{activity.name}}</mat-option>
+    </mat-select>
+    <mat-hint *ngIf="newMode || editMode">Hint</mat-hint>
+  </mat-form-field>
+</div>

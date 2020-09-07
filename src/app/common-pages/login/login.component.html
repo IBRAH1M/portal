@@ -1,0 +1,47 @@
+<mat-toolbar color="primary" class="header">
+  <mat-toolbar-row>
+    <span>{{applicationName}}</span>
+    <span class="header-spacer"></span>
+    <button (click)="changeLanguage()">LANG</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="login-wrapper"
+     fxLayout="row"
+     fxLayoutAlign="center center">
+  <mat-card *ngIf="!showSpinner" class="box">
+    <mat-card-header>
+      <mat-card-title>{{'common_pages.login.header' | translate}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="login(username, password)"
+        class="full-width">
+        <mat-form-field class="full-width">
+          <mat-label>{{'common_pages.login.username' | translate}}</mat-label>
+          <input matInput
+                 [(ngModel)]="username"
+                 name="username"
+                 required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>{{'common_pages.login.password' | translate}}</mat-label>
+          <input matInput
+                 [(ngModel)]="password"
+                 type="password"
+                 name="password"
+                 required>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button
+              (click)="login(username, password)"
+              color="primary"
+              class="full-width">{{'common_pages.login.button' |  translate}}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <div *ngIf="showSpinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>

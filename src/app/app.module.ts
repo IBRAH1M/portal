@@ -1,21 +1,22 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {AppComponent} from './app.component';
-import {SharedModule} from './shared/shared.module';
-import {ClientManagementModule} from './client-management/client-management.module';
-import {AppRoutingModule} from './app-routing.module';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {NavigationModule} from './navigation/navigation.module';
+import {CommonPagesModule} from './common-pages/common-pages.module';
+import {AdminToolsModule} from './admin-tools/admin-tools.module';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DashboardModule} from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -23,8 +24,13 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
         deps: [HttpClient]
       }
     }),
-    SharedModule,
-    ClientManagementModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    NavigationModule,
+    DashboardModule,
+    AdminToolsModule,
+    CommonPagesModule,
     AppRoutingModule
   ],
   providers: [],
